@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
-use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Author extends Model
+class Author extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
 
     protected $casts = [
         'id' => 'integer',
@@ -31,9 +34,14 @@ class Author extends Model
                 ->email()
                 ->required()
                 ->maxLength(255),
-            MarkdownEditor::make('title')
+            TextInput::make('title')
                 ->required()
                 ->maxLength(255),
+            SpatieMediaLibraryFileUpload::make('avatar')
+                ->image()
+                ->required()
+                ->collection('avatar')
+                ->imageEditor(),
         ];
     }
 }

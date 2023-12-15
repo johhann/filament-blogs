@@ -8,8 +8,12 @@ enum BlogStatus: string
     case PUBLISHED = 'Published';
     case REJECTED = 'Rejected';
 
-    public function getDescription()
+    public function getColor()
     {
-
+        return match ($this) {
+            self::SUBMITTED => 'primary',
+            self::PUBLISHED => 'success',
+            self::REJECTED => 'danger',
+        };
     }
 }

@@ -22,7 +22,7 @@ class AuthorFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->safeEmail(),
-            'title' => $this->faker->title(4),
+            'title' => $this->faker->jobTitle(),
         ];
     }
 }

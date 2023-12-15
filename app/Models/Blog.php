@@ -47,6 +47,18 @@ class Blog extends Model implements HasMedia
         return $this->hasMany(Comment::class);
     }
 
+    public function publish()
+    {
+        $this->status = BlogStatus::PUBLISHED;
+        $this->save();
+    }
+
+    public function reject()
+    {
+        $this->status = BlogStatus::REJECTED;
+        $this->save();
+    }
+
     public static function getForm(): array
     {
         return [
