@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Author;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AuthorFactory extends Factory
 {
@@ -23,7 +22,7 @@ class AuthorFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->safeEmail(),
-            'title' => $this->faker->sentence(4),
+            'title' => $this->faker->title(4),
         ];
     }
 }

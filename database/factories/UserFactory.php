@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
@@ -20,9 +19,16 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        User::updateOrCreate([
+            'email' => 'admin@admin.com',
+        ], [
+            'name' => 'john Doe',
+            'password' => bcrypt('password'),
+            'status' => true,
+        ]);
+
         return [
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
+            'name' => $this->faker->name(),
             'email' => $this->faker->safeEmail(),
             'password' => $this->faker->password(),
             'status' => $this->faker->boolean(),

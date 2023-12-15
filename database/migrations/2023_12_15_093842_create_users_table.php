@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name')->index();
-            $table->string('last_name')->index();
+            $table->string('name')->index();
             $table->string('email')->index();
             $table->string('password');
             $table->boolean('status')->default(1);

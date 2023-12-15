@@ -17,6 +17,7 @@ return new class extends Migration
             $table->longText('body');
             $table->string('status');
             $table->timestamp('published_at')->nullable();
+            $table->json('tags')->nullable();
             $table->foreignId('category_id');
             $table->foreignId('author_id');
             $table->timestamps();

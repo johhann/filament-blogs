@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use App\Enums\BlogStatus;
 use App\Models\Author;
 use App\Models\Blog;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BlogFactory extends Factory
 {
@@ -22,13 +22,16 @@ class BlogFactory extends Factory
      */
     public function definition(): array
     {
+        $authors = collect(Author::pluck('id'));
+        $categories = collect(Category::pluck('id'));
+
         return [
             'title' => $this->faker->sentence(4),
             'body' => $this->faker->text(),
-            'status' => $this->faker->word(),
+            'status' => $this->faker->randomElement(BlogStatus::class),
             'published_at' => $this->faker->dateTime(),
-            'category_id' => Category::factory(),
-            'author_id' => Author::factory(),
+            'category_id' => $categories->random(),
+            'author_id' => $authors->random(),
         ];
     }
 }
